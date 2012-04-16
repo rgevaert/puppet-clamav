@@ -3,15 +3,15 @@ class clamav::conf
   file {
     '/etc/clamav/freshclam.conf':
       ensure  => present,
-      owner   => 'root',
-      group   => 'root',
-      content => $clamav::freshclam_template,
-      mode    => '0644';
+      owner   => 'clamav',
+      group   => 'adm',
+      content => template($clamav::freshclam_template),
+      mode    => '0444';
     '/etc/clamav/clamd.conf':
       ensure  => present,
       owner   => 'root',
       group   => 'root',
-      content => $clamav::clamd_template,
+      content => template($clamav::clamd_template),
       mode    => '0644';
   }
 }
